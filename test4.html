@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4eee4">
+  <meta name="description" content="دعوة لحضور حفل زواج المهندس حمزة">
+  <title>ليلة حمزة | دعوة زفاف</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Reem+Kufi+Ink&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4eee4;
+      --paper-deep: #e9dfd0;
+      --ink: #302820;
+      --muted: #76695b;
+      --rust: #a64f35;
+      --rust-dark: #783a2b;
+      --olive: #69715a;
+      --line: rgba(48,40,32,.2);
+      --serif: "Reem Kufi Ink", serif;
+      --sans: "IBM Plex Sans Arabic", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(166,79,53,.09), transparent 32rem),
+        radial-gradient(ellipse at 90% 82%, rgba(105,113,90,.10), transparent 30rem),
+        var(--paper);
+      font-family: var(--sans);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 12px;
+      border: 1px solid rgba(120,58,43,.23);
+      pointer-events: none;
+      z-index: 5;
+    }
+    .page {
+      width: min(100% - 44px, 1050px);
+      margin: 0 auto;
+      padding: 34px 0 52px;
+      position: relative;
+    }
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .08em;
+      padding: 0 4px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+    .topline .seal {
+      color: var(--rust);
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr minmax(260px, .82fr);
+      gap: clamp(26px, 6vw, 82px);
+      align-items: center;
+      padding: clamp(52px, 9vw, 105px) 3.5% 58px;
+      position: relative;
+    }
+    .copy { position: relative; z-index: 2; }
+    .eyebrow {
+      color: var(--rust);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      margin: 0 0 22px;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(66px, 12vw, 142px);
+      font-weight: 400;
+      line-height: 1.08;
+      margin: 0;
+      color: var(--rust-dark);
+      letter-spacing: -.06em;
+    }
+    .hero-sub {
+      font-size: clamp(19px, 2.5vw, 27px);
+      font-weight: 300;
+      margin: 18px 0 0;
+      color: var(--muted);
+    }
+    .intro {
+      max-width: 490px;
+      margin: 42px 0 0;
+      font-size: 17px;
+      line-height: 2.15;
+    }
+    .intro strong { color: var(--rust-dark); font-weight: 600; }
+    .art {
+      min-height: 430px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .sun {
+      width: min(34vw, 330px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #d8a17d;
+      position: absolute;
+      top: 9%;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 18px rgba(216,161,125,.12), 0 0 0 38px rgba(216,161,125,.07);
+    }
+    .arch {
+      width: min(72%, 310px);
+      height: 370px;
+      position: absolute;
+      bottom: 0;
+      border: 1.5px solid var(--rust-dark);
+      border-bottom: 0;
+      border-radius: 48% 48% 0 0 / 34% 34% 0 0;
+      background: linear-gradient(180deg, rgba(244,238,228,.1), rgba(120,58,43,.08));
+      overflow: hidden;
+    }
+    .arch::before {
+      content: "";
+      position: absolute;
+      inset: 24px 23px 0;
+      border: 1px solid rgba(120,58,43,.42);
+      border-bottom: 0;
+      border-radius: 48% 48% 0 0 / 34% 34% 0 0;
+    }
+    .arch::after {
+      content: "ح";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding-top: 48px;
+      font: 400 clamp(100px, 18vw, 180px)/1 var(--serif);
+      color: rgba(120,58,43,.14);
+    }
+    .stem {
+      position: absolute;
+      width: 1px;
+      height: 160px;
+      background: var(--olive);
+      bottom: 0;
+      left: 16%;
+      transform: rotate(12deg);
+      transform-origin: bottom;
+    }
+    .stem::before, .stem::after {
+      content: "";
+      position: absolute;
+      width: 43px;
+      height: 19px;
+      border: 1px solid var(--olive);
+      border-radius: 100% 0 100% 0;
+      background: rgba(105,113,90,.08);
+    }
+    .stem::before { top: 36px; left: -39px; transform: rotate(-26deg); }
+    .stem::after { top: 76px; left: 2px; transform: rotate(25deg) scaleX(-1); }
+    .stem.two { left: 84%; height: 125px; transform: rotate(-15deg); }
+    .stem.two::before { top: 30px; }
+    .stem.two::after { top: 67px; }
+    .vertical-note {
+      position: absolute;
+      right: -4px;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      color: var(--olive);
+      font-size: 11px;
+      letter-spacing: .2em;
+    }
+    .details {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 0 3.5%;
+    }
+    .date-block {
+      padding: 38px 5% 38px 9%;
+      border-left: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .date-label, .section-label {
+      color: var(--rust);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      margin: 0 0 13px;
+    }
+    .date-number {
+      font: 400 clamp(48px, 7vw, 78px)/1.1 var(--serif);
+      color: var(--rust-dark);
+      direction: ltr;
+      text-align: right;
+    }
+    .date-day { margin: 12px 0 0; font-size: 17px; }
+    .info-block { padding: 38px 8%; }
+    .info-block p { margin: 7px 0; line-height: 1.9; }
+    .info-block .place { font-size: 22px; font-weight: 600; color: var(--rust-dark); }
+    .count-area {
+      padding: 58px 3.5% 50px;
+      text-align: center;
+    }
+    .count-area h2 {
+      font: 400 clamp(25px, 4vw, 38px)/1.5 var(--serif);
+      color: var(--rust-dark);
+      margin: 0 0 9px;
+    }
+    .count-area > p { color: var(--muted); margin: 0 0 27px; }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: clamp(10px, 3vw, 30px);
+      direction: ltr;
+    }
+    .unit { min-width: 70px; }
+    .unit b {
+      display: block;
+      font: 400 clamp(36px, 6vw, 55px)/1.2 var(--serif);
+      color: var(--rust);
+      font-variant-numeric: tabular-nums;
+    }
+    .unit span { color: var(--muted); font-size: 12px; }
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+    .action {
+      min-width: 185px;
+      border: 1px solid var(--rust-dark);
+      padding: 13px 22px;
+      text-decoration: none;
+      color: var(--rust-dark);
+      background: transparent;
+      font: 500 14px var(--sans);
+      cursor: pointer;
+      transition: .25s ease;
+    }
+    .action.primary { background: var(--rust-dark); color: var(--paper); }
+    .action:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(48,40,32,.12); }
+    .action:focus-visible { outline: 3px solid var(--olive); outline-offset: 3px; }
+    .rsvp-state { min-height: 25px; margin: 12px 0 0; color: var(--olive); font-size: 13px; }
+    .footer {
+      text-align: center;
+      padding: 25px 10px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .footer strong { display: block; color: var(--rust-dark); font: 400 24px var(--serif); margin-bottom: 8px; }
+    .ornament {
+      width: 44px; height: 44px; margin: 0 auto 14px; position: relative;
+      border: 1px solid rgba(166,79,53,.45); transform: rotate(45deg);
+    }
+    .ornament::before { content: ""; position: absolute; inset: 7px; border: 1px solid rgba(166,79,53,.45); }
+    @media (max-width: 680px) {
+      .page { width: min(100% - 34px, 540px); padding-top: 26px; }
+      .hero { grid-template-columns: 1fr; gap: 5px; padding: 55px 2% 38px; }
+      .copy { text-align: center; }
+      .intro { margin: 27px auto 0; font-size: 15px; }
+      .art { min-height: 300px; order: -1; }
+      .sun { width: 210px; top: 4%; }
+      .arch { height: 275px; width: 230px; }
+      .stem { height: 110px; }
+      .stem.two { height: 95px; }
+      .vertical-note { right: 0; }
+      .details { grid-template-columns: 1fr; }
+      .date-block { border-left: 0; border-bottom: 1px solid var(--line); text-align: center; padding: 28px 12px; }
+      .date-number { text-align: center; }
+      .info-block { text-align: center; padding: 28px 12px; }
+      .count-area { padding: 43px 0 35px; }
+      .unit { min-width: 56px; }
+      .action { min-width: 160px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topline">
+      <span>دعوة خاصة • ٢٠٢٦</span>
+      <span class="seal">أفراح آل الحميدي</span>
+    </header>
+
+    <section class="hero" aria-labelledby="title">
+      <div class="copy">
+        <p class="eyebrow">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيم</p>
+        <h1 id="title">حمزة</h1>
+        <p class="hero-sub">ليلةٌ تُزهر بالفرح، وتكتمل بكم</p>
+        <p class="intro">
+          يتشرّف <strong>السيد / عبدالرحمن مقبل شايف الحميدي</strong><br>
+          بدعوتكم لمشاركته فرحة زواج نجله<br>
+          <strong>المهندس حمزة</strong><br>
+          سائلين الله أن يجعلها ليلة مباركة، وأن يديم الأفراح والمسرّات.
+        </p>
+      </div>
+
+      <div class="art" aria-hidden="true">
+        <span class="vertical-note">ليلة من العمر — الرياض</span>
+        <div class="sun"></div>
+        <div class="arch"></div>
+        <i class="stem"></i>
+        <i class="stem two"></i>
+      </div>
+    </section>
+
+    <section class="details" aria-label="موعد ومكان الحفل">
+      <div class="date-block">
+        <p class="date-label">موعد اللقاء</p>
+        <div class="date-number">16 / 12</div>
+        <p class="date-day">الأربعاء • ١٦ ديسمبر ٢٠٢٦م</p>
+        <p class="date-day">٧ رجب ١٤٤٨هـ</p>
+      </div>
+      <div class="info-block">
+        <p class="section-label">تفاصيل الأمسية</p>
+        <p>يسرّنا استقبالكم في تمام</p>
+        <p class="place">الثامنة مساءً</p>
+        <p>قصر درة الخيالة</p>
+        <p>الرياض — المملكة العربية السعودية</p>
+      </div>
+    </section>
+
+    <section class="count-area">
+      <h2>نعدّ اللحظات حتى نلقاكم</h2>
+      <p id="count-note">باقٍ على موعد اجتماعنا</p>
+      <div class="countdown" id="countdown" role="timer" aria-live="off">
+        <div class="unit"><b id="days">--</b><span>يوم</span></div>
+        <div class="unit"><b id="hours">--</b><span>ساعة</span></div>
+        <div class="unit"><b id="minutes">--</b><span>دقيقة</span></div>
+        <div class="unit"><b id="seconds">--</b><span>ثانية</span></div>
+      </div>
+      <div class="actions">
+        <a class="action primary" href="https://www.google.com/maps/search/?api=1&query=%D9%82%D8%B5%D8%B1%20%D8%AF%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AE%D9%8A%D8%A7%D9%84%D8%A9%20%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6" target="_blank" rel="noopener noreferrer">الوصول إلى القصر ↗</a>
+        <button class="action" id="rsvp" type="button">يسعدنا حضوركم</button>
+      </div>
+      <p class="rsvp-state" id="rsvp-state" aria-live="polite"></p>
+    </section>
+
+    <footer class="footer">
+      <div class="ornament" aria-hidden="true"></div>
+      <strong>بحضوركم تكتمل فرحتنا</strong>
+      جعل الله أيامكم أفراحًا ومسرّات
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      const eventTime = new Date("2026-12-16T20:00:00+03:00").getTime();
+      const $ = id => document.getElementById(id);
+      const pad = n => String(n).padStart(2, "0");
+
+      function updateCountdown() {
+        const remaining = eventTime - Date.now();
+        if (remaining <= 0) {
+          $("countdown").hidden = true;
+          $("count-note").textContent = "حلّت ليلة الفرح، حيّاكم الله";
+          return;
+        }
+        const total = Math.floor(remaining / 1000);
+        $("days").textContent = pad(Math.floor(total / 86400));
+        $("hours").textContent = pad(Math.floor(total % 86400 / 3600));
+        $("minutes").textContent = pad(Math.floor(total % 3600 / 60));
+        $("seconds").textContent = pad(total % 60);
+        window.setTimeout(updateCountdown, 1000);
+      }
+      updateCountdown();
+
+      const button = $("rsvp");
+      const state = $("rsvp-state");
+      const key = "hamza_invitation_rsvp_v2";
+
+      function renderRSVP() {
+        const confirmed = localStorage.getItem(key) === "yes";
+        button.textContent = confirmed ? "تم تسجيل رغبتكم ✓" : "يسعدنا حضوركم";
+        state.textContent = confirmed
+          ? "شكرًا لكم، تم حفظ اختياركم على هذا الجهاز."
+          : "اضغط لتسجيل رغبتك بالحضور على هذا الجهاز.";
+      }
+      button.addEventListener("click", () => {
+        const confirmed = localStorage.getItem(key) === "yes";
+        if (confirmed) localStorage.removeItem(key);
+        else localStorage.setItem(key, "yes");
+        renderRSVP();
+      });
+      renderRSVP();
+    })();
+  </script>
+</body>
+</html>
