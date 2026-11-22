@@ -4,8 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f4eee4">
-  <meta name="description" content="دعوة لحضور حفل زواج المهندس حمزة">
+  <meta name="description" content="يتشرّف السيد عبدالرحمن مقبل شايف الحميدي بدعوتكم لحضور حفل زواج نجله المهندس حمزة">
   <title>ليلة حمزة | دعوة زفاف</title>
+
+  <!-- أيقونة الموقع وصورة المعاينة عند مشاركة الرابط -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta property="og:title" content="ليلة حمزة | دعوة زفاف">
+  <meta property="og:description" content="يتشرّف السيد عبدالرحمن مقبل شايف الحميدي بدعوتكم لحضور حفل زواج نجله المهندس حمزة — الأربعاء ١٦ ديسمبر ٢٠٢٦م في قصر درة الخيالة بالرياض.">
+  <meta property="og:image" content="https://omarald.github.io/HamzaWidding/og-preview.jpg">
+  <meta property="og:url" content="https://omarald.github.io/HamzaWidding/">
+  <meta property="og:type" content="website">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Reem+Kufi+Ink&display=swap" rel="stylesheet">
@@ -128,8 +137,11 @@
       border: 1.5px solid var(--rust-dark);
       border-bottom: 0;
       border-radius: 48% 48% 0 0 / 34% 34% 0 0;
-      background: linear-gradient(180deg, rgba(244,238,228,.1), rgba(120,58,43,.08));
+      background: linear-gradient(180deg, rgba(244,238,228,.25), rgba(120,58,43,.10));
       overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
     }
     .arch::before {
       content: "";
@@ -138,6 +150,8 @@
       border: 1px solid rgba(120,58,43,.42);
       border-bottom: 0;
       border-radius: 48% 48% 0 0 / 34% 34% 0 0;
+      pointer-events: none;
+      z-index: 2;
     }
     .arch::after {
       content: "ح";
@@ -148,6 +162,16 @@
       padding-top: 48px;
       font: 400 clamp(100px, 18vw, 180px)/1 var(--serif);
       color: rgba(120,58,43,.14);
+      z-index: 0;
+    }
+    .groom-photo {
+      position: relative;
+      z-index: 1;
+      width: 92%;
+      height: 92%;
+      object-fit: contain;
+      object-position: bottom center;
+      filter: drop-shadow(0 6px 14px rgba(48,40,32,.14));
     }
     .stem {
       position: absolute;
@@ -257,9 +281,21 @@
       transition: .25s ease;
     }
     .action.primary { background: var(--rust-dark); color: var(--paper); }
+    .action.confirmed { background: var(--olive); border-color: var(--olive); color: var(--paper); }
     .action:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(48,40,32,.12); }
     .action:focus-visible { outline: 3px solid var(--olive); outline-offset: 3px; }
     .rsvp-state { min-height: 25px; margin: 12px 0 0; color: var(--olive); font-size: 13px; }
+    .undo-link {
+      display: inline-block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      text-decoration: underline;
+      background: none;
+      border: 0;
+      font-family: var(--sans);
+      cursor: pointer;
+    }
     .footer {
       text-align: center;
       padding: 25px 10px 0;
@@ -316,12 +352,14 @@
         </p>
       </div>
 
-      <div class="art" aria-hidden="true">
-        <span class="vertical-note">ليلة من العمر — الرياض</span>
-        <div class="sun"></div>
-        <div class="arch"></div>
-        <i class="stem"></i>
-        <i class="stem two"></i>
+      <div class="art">
+        <span class="vertical-note" aria-hidden="true">ليلة من العمر — الرياض</span>
+        <div class="sun" aria-hidden="true"></div>
+        <div class="arch">
+          <img class="groom-photo" src="hamza.webp" alt="المهندس حمزة" onerror="this.style.display='none'">
+        </div>
+        <i class="stem" aria-hidden="true"></i>
+        <i class="stem two" aria-hidden="true"></i>
       </div>
     </section>
 
@@ -355,6 +393,9 @@
         <button class="action" id="rsvp" type="button">يسعدنا حضوركم</button>
       </div>
       <p class="rsvp-state" id="rsvp-state" aria-live="polite"></p>
+      <div id="undo-wrap" hidden>
+        <button type="button" class="undo-link" id="rsvp-undo">تراجع عن التأكيد</button>
+      </div>
     </section>
 
     <footer class="footer">
@@ -388,23 +429,51 @@
 
       const button = $("rsvp");
       const state = $("rsvp-state");
-      const key = "hamza_invitation_rsvp_v2";
+      const undoWrap = $("undo-wrap");
+      const undoBtn = $("rsvp-undo");
+      const key = "hamza_rsvp_done";
+
+      function trackEvent(eventPath, eventTitle) {
+        if (window.goatcounter && typeof window.goatcounter.count === "function") {
+          window.goatcounter.count({
+            path: eventPath,
+            title: eventTitle,
+            event: true
+          });
+        }
+      }
 
       function renderRSVP() {
-        const confirmed = localStorage.getItem(key) === "yes";
-        button.textContent = confirmed ? "تم تسجيل رغبتكم ✓" : "يسعدنا حضوركم";
+        const confirmed = localStorage.getItem(key) === "1";
+        button.textContent = confirmed ? "تم تأكيد حضوركم ✓" : "يسعدنا حضوركم";
+        button.classList.toggle("confirmed", confirmed);
+        button.disabled = confirmed;
+        undoWrap.hidden = !confirmed;
         state.textContent = confirmed
-          ? "شكرًا لكم، تم حفظ اختياركم على هذا الجهاز."
-          : "اضغط لتسجيل رغبتك بالحضور على هذا الجهاز.";
+          ? "شكرًا لكم، تم تسجيل تأكيد حضوركم ونتشرف بلقائكم."
+          : "اضغط لتأكيد تشريفكم لنا في الحفل.";
       }
+
       button.addEventListener("click", () => {
-        const confirmed = localStorage.getItem(key) === "yes";
-        if (confirmed) localStorage.removeItem(key);
-        else localStorage.setItem(key, "yes");
+        if (localStorage.getItem(key) === "1") return;
+        localStorage.setItem(key, "1");
+        trackEvent("rsvp-click", "تأكيد الحضور");
         renderRSVP();
       });
+
+      undoBtn.addEventListener("click", () => {
+        if (localStorage.getItem(key) !== "1") return;
+        localStorage.removeItem(key);
+        trackEvent("rsvp-cancel", "تراجع عن الحضور");
+        renderRSVP();
+      });
+
       renderRSVP();
     })();
   </script>
+
+  <!-- عداد الزوار وتأكيد الحضور (GoatCounter) -->
+  <script data-goatcounter="https://omarald.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
