@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#07090f">
+  <title>دعوة حفل زواج المهندس حمزة | أفراح آل الحميدي</title>
+  <meta name="description" content="يتشرف السيد عبدالرحمن مقبل شايف الحميدي بدعوتكم لحضور حفل زواج نجله المهندس حمزة، يوم الأربعاء 16/12/2026م، في قصر درة الخيالة بالرياض.">
+
+  <!-- Open Graph / Social Sharing Metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_SA">
+  <meta property="og:title" content="دعوة حفل زواج المهندس حمزة | أفراح آل الحميدي">
+  <meta property="og:description" content="يتشرف السيد عبدالرحمن مقبل شايف الحميدي بدعوتكم لحضور حفل زواج نجله المهندس حمزة، الأربعاء 16/12/2026م، قصر درة الخيالة، الرياض.">
+  <meta property="og:image" content="hamza.webp">
+
+  <!-- Google Fonts: Royal Arabic Calligraphy & Editorial Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="hamza.webp" fetchpriority="high">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@500;700&family=Scheherazade+New:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Three.js (3D Engine), Tone.js (Synthesized Chimes), QRCode Generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --bg-obsidian: #06080e;
+      --bg-velvet: #0d121d;
+      --gold-light: #fff3c4;
+      --gold-primary: #dfb867;
+      --gold-deep: #9e752b;
+      --ivory: #f7f1e3;
+      --muted-sand: #c5baa3;
+      --glass-surface: rgba(12, 16, 27, 0.58);
+      --glass-border: rgba(223, 184, 103, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-obsidian);
+      color: var(--ivory);
+      font-family: 'Amiri', 'Traditional Arabic', serif;
+      overflow-x: hidden;
+      min-height: 100dvh;
+    }
+
+    /* Typography Helpers */
+    .font-ruqaa { font-family: 'Aref Ruqaa', serif; }
+    .font-kufi { font-family: 'Reem Kufi', sans-serif; }
+    .font-scheherazade { font-family: 'Scheherazade New', serif; }
+    .font-amiri { font-family: 'Amiri', serif; }
+
+    /* Shimmering 24K Gold Foil Text */
+    .gold-foil {
+      background: linear-gradient(
+        115deg,
+        #9e752b 0%,
+        #dfb867 28%,
+        #fff7d6 48%,
+        #dfb867 68%,
+        #8c631d 100%
+      );
+      background-size: 240% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 6.5s ease-in-out infinite;
+    }
+
+    @keyframes goldShimmer {
+      0% { background-position: 120% 0; }
+      50%, 100% { background-position: -30% 0; }
+    }
+
+    /* Fullscreen Interactive 3D WebGL Canvas */
+    #webgl-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      display: block;
+      touch-action: pan-y;
+    }
+
+    /* Subtle Vignette & Architectural Grain Overlay */
+    .ambient-vignette {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 25%, rgba(223, 184, 103, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse at center, transparent 42%, rgba(4, 6, 11, 0.82) 100%);
+    }
+
+    /* Royal Wax Seal Intro Overlay */
+    #intro-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 45%, rgba(16, 22, 36, 0.84) 0%, rgba(5, 7, 13, 0.96) 100%);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1), transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), visibility 1.1s;
+    }
+
+    #intro-gate.opened {
+      opacity: 0;
+      transform: scale(1.08);
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* 3D Sculptural Wax Seal Button */
+    .wax-seal-wrapper {
+      perspective: 900px;
+      cursor: pointer;
+    }
+
+    .wax-seal {
+      position: relative;
+      width: 168px;
+      height: 168px;
+      border-radius: 9999px;
+      background: radial-gradient(circle at 32% 28%, #f8e29c 0%, #cfa14a 38%, #8c621b 82%, #593b0b 100%);
+      box-shadow:
+        0 24px 55px rgba(0, 0, 0, 0.85),
+        0 0 0 6px rgba(223, 184, 103, 0.18),
+        0 0 40px rgba(223, 184, 103, 0.35),
+        inset 0 3px 8px rgba(255, 250, 225, 0.75),
+        inset 0 -6px 14px rgba(46, 29, 4, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+      transition: transform 0.25s ease-out, box-shadow 0.4s ease;
+      animation: sealFloat 4s ease-in-out infinite;
+    }
+
+    .wax-seal::before {
+      content: "";
+      position: absolute;
+      inset: 11px;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(68, 42, 6, 0.55);
+      box-shadow: inset 0 1px 3px rgba(255, 245, 200, 0.65);
+    }
+
+    .wax-seal::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 9999px;
+      border: 1px dashed rgba(68, 42, 6, 0.45);
+    }
+
+    @keyframes sealFloat {
+      0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+      50% { transform: translateY(-8px) rotateX(4deg) rotateY(-4deg); }
+    }
+
+    .wax-seal:active {
+      transform: scale(0.94) !important;
+    }
+
+    .seal-pulse-ring {
+      position: absolute;
+      inset: -16px;
+      border-radius: 9999px;
+      border: 1px solid rgba(223, 184, 103, 0.5);
+      animation: pulseRing 2.6s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulseRing {
+      0% { transform: scale(0.92); opacity: 0.85; }
+      100% { transform: scale(1.35); opacity: 0; }
+    }
+
+    /* Main Content Layer */
+    #content-stage {
+      position: relative;
+      z-index: 10;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.1s ease 0.25s, transform 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+    }
+
+    #content-stage.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Glassmorphic Royal Cards */
+    .royal-card {
+      background: linear-gradient(165deg, rgba(18, 24, 39, 0.72) 0%, rgba(8, 11, 19, 0.84) 100%);
+      border: 1px solid var(--glass-border);
+      box-shadow:
+        0 25px 60px -15px rgba(0, 0, 0, 0.85),
+        inset 0 1px 0 rgba(255, 243, 196, 0.22);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    /* 3D Interactive Groom Arch Portal */
+    .groom-portal-scene {
+      perspective: 1100px;
+    }
+
+    .groom-portal-card {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.18s ease-out;
+      will-change: transform;
+    }
+
+    .groom-arch-frame {
+      position: relative;
+      border-radius: 999px 999px 26px 26px;
+      padding: 4px;
+      background: linear-gradient(155deg, #fff2bf 0%, #dfb867 35%, #7c5819 72%, #dfb867 100%);
+      box-shadow:
+        0 26px 55px rgba(0, 0, 0, 0.8),
+        0 0 38px rgba(223, 184, 103, 0.22);
+    }
+
+    .groom-arch-inner {
+      position: relative;
+      border-radius: 999px 999px 22px 22px;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 35%, #1d273b 0%, #090d16 88%);
+    }
+
+    .groom-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 10%;
+      display: block;
+      transform: translateZ(24px) scale(1.02);
+      filter: contrast(1.04) saturate(1.06) drop-shadow(0 12px 22px rgba(0, 0, 0, 0.55));
+      -webkit-mask-image: linear-gradient(180deg, #000 76%, transparent 100%);
+      mask-image: linear-gradient(180deg, #000 76%, transparent 100%);
+    }
+
+    /* Specular Glare Layer on 3D Cards */
+    .specular-sheen {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(255, 245, 205, 0.22) 0%, transparent 62%);
+      mix-blend-mode: screen;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Rotating Sacred Geometry Mandala behind Groom */
+    .mandala-spin {
+      animation: slowOrbit 75s linear infinite;
+    }
+    .mandala-spin-reverse {
+      animation: slowOrbitReverse 105s linear infinite;
+    }
+    @keyframes slowOrbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes slowOrbitReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+
+    /* Countdown Rolling Mechanical Digits */
+    .digit-window {
+      height: 1.35em;
+      overflow: hidden;
+      display: inline-flex;
+      justify-content: center;
+      direction: ltr;
+      font-variant-numeric: tabular-nums;
+    }
+    .digit-col {
+      height: 1.35em;
+      overflow: hidden;
+    }
+    .digit-strip {
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.65s cubic-bezier(0.28, 1.35, 0.42, 1);
+    }
+    .digit-strip span {
+      height: 1.35em;
+      line-height: 1.35em;
+      min-width: 0.62em;
+      text-align: center;
+    }
+
+    /* QR Code Laser Scan Beam Animation */
+    .qr-laser {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #dfb867, #fff7d6, #dfb867, transparent);
+      box-shadow: 0 0 12px 2px rgba(223, 184, 103, 0.85);
+      animation: scanLaser 3.2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scanLaser {
+      0%, 100% { top: 10px; opacity: 0.35; }
+      50% { top: calc(100% - 12px); opacity: 1; }
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.2, 0.75, 0.25, 1);
+    }
+    .reveal-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #06080e; }
+    ::-webkit-scrollbar-thumb { background: rgba(223, 184, 103, 0.35); border-radius: 999px; }
+
+    /* Accessibility: Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .reveal-up { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body class="selection:bg-[#dfb867]/30 selection:text-[#fff3c4]">
+
+  <!-- Live 3D Architectural & Celestial Canvas -->
+  <canvas id="webgl-canvas" aria-hidden="true"></canvas>
+  <div class="ambient-vignette" aria-hidden="true"></div>
+
+  <!-- Floating Sound & 3D View Controls -->
+  <div class="fixed top-4 left-4 z-40 flex items-center gap-2" style="padding-top: env(safe-area-inset-top, 0px);">
+    <button id="audio-toggle" type="button" aria-label="تفعيل أو كتم المؤثرات الصوتية"
+      class="w-11 h-11 rounded-full royal-card flex items-center justify-center text-[#dfb867] hover:scale-105 active:scale-95 transition">
+      <svg id="icon-sound-off" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/>
+      </svg>
+      <svg id="icon-sound-on" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ACT I: Royal 3D Wax Seal Intro Gate -->
+  <section id="intro-gate" aria-label="بوابة الدعوة الملكية">
+    <div class="text-center px-6 max-w-md mx-auto">
+      <p class="font-ruqaa text-2xl sm:text-3xl text-[#dfb867] mb-2 tracking-wide">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <p class="font-kufi text-sm sm:text-base text-[#c5baa3] mb-10">دعوة خاصة لحضور حفل زواج المهندس حمزة</p>
+
+      <!-- Interactive 3D Wax Seal -->
+      <div class="wax-seal-wrapper mx-auto w-fit" id="seal-trigger" role="button" tabindex="0" aria-label="اضغط لفتح بطاقة الدعوة">
+        <div class="wax-seal" id="wax-seal">
+          <div class="seal-pulse-ring"></div>
+          <div class="text-center select-none transform translate-z-4">
+            <span class="block font-ruqaa text-3xl text-[#331e03] leading-none drop-shadow-[0_1px_0_rgba(255,248,215,0.7)]">آل الحميدي</span>
+            <span class="block font-kufi text-[11px] font-bold tracking-widest text-[#4a2e06] mt-1.5">افتح الدعوة</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-10 font-kufi text-xs sm:text-sm text-[#dfb867]/90 animate-pulse">
+        المس الختم الملكي للدخول إلى قصر الفرح
+      </p>
+    </div>
+  </section>
+
+  <!-- ACT II: Main Interactive Invitation Experience -->
+  <main id="content-stage" class="relative max-w-xl mx-auto px-4 sm:px-6 pt-10 pb-24 text-center" style="padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));">
+
+    <!-- Top Bismillah & Royal Crest -->
+    <header class="reveal-up mb-6">
+      <div class="inline-flex items-center gap-3 px-5 py-1.5 rounded-full border border-[#dfb867]/30 bg-[#0d121d]/60 backdrop-blur-md mb-4">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#dfb867]"></span>
+        <span class="font-ruqaa text-lg sm:text-xl text-[#dfb867]">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#dfb867]"></span>
+      </div>
+      <h1 class="font-ruqaa text-4xl sm:text-6xl font-bold gold-foil leading-tight py-1">
+        أفراح آل الحميدي
+      </h1>
+    </header>
+
+    <!-- 3D Interactive Groom Portrait Mihrab Portal -->
+    <section class="reveal-up groom-portal-scene my-6" aria-label="صورة العريس المهندس حمزة">
+      <div class="relative mx-auto w-[250px] sm:w-[285px] aspect-[3/3.65] flex items-center justify-center">
+
+        <!-- Sacred Geometry Rotating Mandala Halo -->
+        <svg class="absolute -inset-12 w-[calc(100%+6rem)] h-[calc(100%+6rem)] mandala-spin opacity-35 pointer-events-none" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+          <circle cx="100" cy="100" r="94" stroke="#dfb867" stroke-width="0.5" stroke-dasharray="3 4"/>
+          <rect x="34" y="34" width="132" height="132" stroke="#dfb867" stroke-width="0.6"/>
+          <rect x="34" y="34" width="132" height="132" stroke="#dfb867" stroke-width="0.6" transform="rotate(45 100 100)"/>
+          <circle cx="100" cy="100" r="76" stroke="#fff3c4" stroke-width="0.35"/>
+        </svg>
+
+        <svg class="absolute -inset-6 w-[calc(100%+3rem)] h-[calc(100%+3rem)] mandala-spin-reverse opacity-25 pointer-events-none" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+          <polygon points="100,6 124,76 194,100 124,124 100,194 76,124 6,100 76,76" stroke="#dfb867" stroke-width="0.7"/>
+        </svg>
+
+        <!-- 3D Tiltable Arch Frame -->
+        <div id="groom-card" class="groom-portal-card w-full h-full">
+          <div class="groom-arch-frame w-full h-full">
+            <div class="groom-arch-inner w-full h-full">
+              <!-- Subtle Inner Geometric Grid -->
+              <div class="absolute inset-0 opacity-15 pointer-events-none"
+                style="background-image: radial-gradient(#dfb867 1px, transparent 1px); background-size: 16px 16px;"></div>
+
+              <!-- Groom Portrait with Graceful Inline SVG Fallback -->
+              <img
+                src="hamza.webp"
+                alt="صورة العريس المهندس حمزة الحميدي"
+                class="groom-photo"
+                fetchpriority="high"
+                onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 360%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23f7f1e3%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%23d8ccb4%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d=%22M75 360 C75 265 105 235 150 235 C195 235 225 265 225 360 Z%22 fill=%22url(%23g)%22/%3E%3Cpath d=%22M92 145 C92 78 208 78 208 145 L228 295 L195 270 L188 155 L112 155 L105 270 L72 295 Z%22 fill=%22%23ffffff%22/%3E%3Cellipse cx=%22150%22 cy=%22162%22 rx=%2238%22 ry=%2246%22 fill=%22%23d7a882%22/%3E%3Cpath d=%22M112 108 Q150 96 188 108%22 stroke=%22%23111111%22 stroke-width=%2211%22 stroke-linecap=%22round%22 fill=%22none%22/%3E%3Cpath d=%22M114 119 Q150 107 186 119%22 stroke=%22%231a1a1a%22 stroke-width=%229%22 stroke-linecap=%22round%22 fill=%22none%22/%3E%3C/svg%3E';">
+
+              <!-- Bottom Gradient Fade -->
+              <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#070a12] via-[#070a12]/70 to-transparent pointer-events-none"></div>
+              <div class="specular-sheen" id="groom-sheen"></div>
+            </div>
+          </div>
+
+          <!-- Floating 3D Nameplate Medallion -->
+          <div class="absolute -bottom-5 inset-x-4 py-2.5 px-4 rounded-2xl royal-card border border-[#dfb867]/60 shadow-[0_14px_30px_rgba(0,0,0,0.85)]"
+               style="transform: translateZ(38px);">
+            <span class="block font-kufi text-xs sm:text-sm text-[#dfb867] tracking-wider">العريس</span>
+            <h2 class="font-scheherazade text-3xl sm:text-4xl font-bold gold-foil leading-snug">
+              المهندس / حمزة
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Host Invitation Text -->
+    <section class="reveal-up mt-12 mb-8 px-2">
+      <p class="text-xl sm:text-2xl text-[#c5baa3] mb-1">يتشرّف</p>
+      <h3 class="font-ruqaa text-2xl sm:text-3xl text-[#f7f1e3] leading-relaxed">
+        السيد / عبدالرحمن مقبل شايف الحميدي
+      </h3>
+      <p class="text-xl sm:text-2xl text-[#c5baa3] mt-1">
+        بدعوتكم لحضور حفل زواج نجله
+      </p>
+      <div class="mt-2 font-ruqaa text-4xl sm:text-5xl gold-foil">
+        المهندس حمزة
+      </div>
+    </section>
+
+    <!-- Royal Date, Time & Palace Venue Card -->
+    <section class="reveal-up royal-card rounded-3xl p-6 sm:p-8 my-8 relative overflow-hidden" aria-label="موعد ومكان الحفل">
+      <!-- Decorative Corner Filigree -->
+      <svg class="absolute top-3 right-3 w-10 h-10 text-[#dfb867]/45 pointer-events-none" viewBox="0 0 40 40" fill="none">
+        <path d="M38 2H14C7.37258 2 2 7.37258 2 14V38" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="10" cy="10" r="2.5" fill="currentColor"/>
+      </svg>
+      <svg class="absolute top-3 left-3 w-10 h-10 text-[#dfb867]/45 pointer-events-none -scale-x-100" viewBox="0 0 40 40" fill="none">
+        <path d="M38 2H14C7.37258 2 2 7.37258 2 14V38" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="10" cy="10" r="2.5" fill="currentColor"/>
+      </svg>
+
+      <p class="font-kufi text-xs sm:text-sm tracking-widest text-[#dfb867] uppercase mb-4">
+        وذلك بمشيئة الله تعالى
+      </p>
+
+      <!-- Architectural 3-Column Date Grid -->
+      <div class="grid grid-cols-3 items-center divide-x divide-x-reverse divide-[#dfb867]/30 py-3 border-y border-[#dfb867]/25">
+        <div class="px-2">
+          <span class="block text-base sm:text-lg text-[#c5baa3]">اليوم</span>
+          <span class="block font-ruqaa text-2xl sm:text-3xl text-[#fff3c4] mt-1">الأربعاء</span>
+        </div>
+        <div class="px-2">
+          <span class="block text-base sm:text-lg text-[#c5baa3]">ديسمبر ٢٠٢٦</span>
+          <span class="block font-ruqaa text-4xl sm:text-5xl gold-foil leading-none my-1">16</span>
+          <span class="block text-xs sm:text-sm text-[#dfb867]">7 رجب 1448هـ</span>
+        </div>
+        <div class="px-2">
+          <span class="block text-base sm:text-lg text-[#c5baa3]">الساعة</span>
+          <span class="block font-ruqaa text-2xl sm:text-3xl text-[#fff3c4] mt-1">8:00 م</span>
+        </div>
+      </div>
+
+      <!-- Full Written Date & Time -->
+      <p class="mt-4 text-lg sm:text-xl text-[#f7f1e3]/90 leading-relaxed">
+        الموافق <b class="text-[#dfb867] font-ruqaa">16 / 12 / 2026 م</b> • في تمام الساعة <b class="text-[#dfb867] font-ruqaa">الثامنة مساءً</b>
+      </p>
+
+      <!-- Palace Location Block -->
+      <div class="mt-6 pt-5 border-t border-[#dfb867]/20">
+        <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#dfb867]/15 border border-[#dfb867]/40 text-[#dfb867] mb-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6-5.686-6-10a6 6 0 1112 0c0 4.314-6 10-6 10z"/>
+            <circle cx="12" cy="11" r="2.2"/>
+          </svg>
+        </div>
+        <h4 class="font-ruqaa text-2xl sm:text-3xl gold-foil">قصر درة الخيالة</h4>
+        <p class="text-lg sm:text-xl text-[#c5baa3] mt-0.5">الرياض – المملكة العربية السعودية</p>
+
+        <!-- Action Buttons: Google Maps & Add to Calendar -->
+        <div class="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=%D9%82%D8%B5%D8%B1%20%D8%AF%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AE%D9%8A%D8%A7%D9%84%D8%A9%20%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6"
+             target="_blank" rel="noopener noreferrer"
+             class="w-full sm:w-auto min-h-[48px] px-6 py-2.5 rounded-full bg-gradient-to-l from-[#b98a3e] via-[#dfb867] to-[#f3d894] text-[#140e03] font-kufi font-bold text-sm sm:text-base shadow-[0_8px_24px_rgba(223,184,103,0.35)] hover:brightness-110 active:scale-95 transition flex items-center justify-center gap-2">
+            <span>الموقع على الخرائط</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+
+          <button id="add-calendar-btn" type="button"
+             class="w-full sm:w-auto min-h-[48px] px-6 py-2.5 rounded-full border border-[#dfb867]/60 bg-[#0d121d]/70 text-[#fff3c4] font-kufi font-medium text-sm sm:text-base hover:bg-[#dfb867]/15 active:scale-95 transition flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-[#dfb867]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="3"/>
+              <path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+            <span>حفظ في التقويم</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Kinetic Countdown Chronometer -->
+    <section class="reveal-up my-10" aria-label="العد التنازلي لموعد الزفاف">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <span class="h-px w-12 bg-gradient-to-l from-[#dfb867]/60 to-transparent"></span>
+        <span class="font-kufi text-sm sm:text-base text-[#dfb867]">يتبقّى على ليلة الفرح</span>
+        <span class="h-px w-12 bg-gradient-to-r from-[#dfb867]/60 to-transparent"></span>
+      </div>
+
+      <div id="countdown-grid" class="grid grid-cols-4 gap-2.5 sm:gap-3.5 max-w-md mx-auto" role="timer">
+        <div class="royal-card rounded-2xl py-3.5 px-1 border border-[#dfb867]/40">
+          <div class="digit-window font-amiri font-bold text-3xl sm:text-4xl text-[#fff3c4]" id="cd-days"></div>
+          <span class="block font-kufi text-xs sm:text-sm text-[#c5baa3] mt-1">يوم</span>
+        </div>
+        <div class="royal-card rounded-2xl py-3.5 px-1 border border-[#dfb867]/40">
+          <div class="digit-window font-amiri font-bold text-3xl sm:text-4xl text-[#fff3c4]" id="cd-hours"></div>
+          <span class="block font-kufi text-xs sm:text-sm text-[#c5baa3] mt-1">ساعة</span>
+        </div>
+        <div class="royal-card rounded-2xl py-3.5 px-1 border border-[#dfb867]/40">
+          <div class="digit-window font-amiri font-bold text-3xl sm:text-4xl text-[#fff3c4]" id="cd-mins"></div>
+          <span class="block font-kufi text-xs sm:text-sm text-[#c5baa3] mt-1">دقيقة</span>
+        </div>
+        <div class="royal-card rounded-2xl py-3.5 px-1 border border-[#dfb867]/40">
+          <div class="digit-window font-amiri font-bold text-3xl sm:text-4xl text-[#dfb867]" id="cd-secs"></div>
+          <span class="block font-kufi text-xs sm:text-sm text-[#c5baa3] mt-1">ثانية</span>
+        </div>
+      </div>
+      <p id="countdown-note" class="mt-2.5 text-sm sm:text-base text-[#c5baa3]/80">بتوقيت الرياض (UTC+3)</p>
+    </section>
+
+    <!-- 3D Holographic QR Barcode VIP Pass -->
+    <section class="reveal-up my-10" aria-label="الباركود للوصول إلى موقع القصر">
+      <div class="royal-card rounded-3xl p-6 sm:p-7 max-w-sm mx-auto relative overflow-hidden border border-[#dfb867]/45">
+        <p class="font-kufi text-xs sm:text-sm text-[#dfb867] mb-1">بطاقة الوصول السريع</p>
+        <h4 class="font-ruqaa text-2xl text-[#f7f1e3] mb-4">باركود موقع قصر درة الخيالة</h4>
+
+        <!-- Interactive 3D Tilted QR Frame with Scanline -->
+        <a id="qr-card-link"
+           href="https://www.google.com/maps/search/?api=1&amp;query=%D9%82%D8%B5%D8%B1%20%D8%AF%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AE%D9%8A%D8%A7%D9%84%D8%A9%20%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="امسح الباركود أو اضغط لفتح موقع قصر درة الخيالة على الخرائط"
+           class="group relative inline-block p-3.5 rounded-2xl bg-[#fffdf7] border-2 border-[#dfb867] shadow-[0_14px_35px_rgba(0,0,0,0.65),0_0_25px_rgba(223,184,103,0.28)] hover:scale-[1.03] active:scale-95 transition-transform">
+
+          <!-- Animated Gold Scanline -->
+          <div class="qr-laser" aria-hidden="true"></div>
+
+          <!-- High-Precision Scannable QR Container -->
+          <div id="qr-container" class="w-40 h-40 sm:w-44 sm:h-44 flex items-center justify-center">
+            <!-- Fallback to qr.svg if script blocked -->
+            <img src="qr.svg" alt="رمز الاستجابة السريعة لموقع قصر درة الخيالة" class="w-full h-full object-contain">
+          </div>
+        </a>
+
+        <p class="mt-4 text-base sm:text-lg text-[#c5baa3]">
+          امسح الباركود بكاميرا الجوال أو اضغط عليه للوصول المباشر
+        </p>
+
+        <!-- Copy Location Link Button -->
+        <button id="copy-link-btn" type="button"
+          class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs sm:text-sm font-kufi text-[#dfb867] border border-[#dfb867]/35 hover:bg-[#dfb867]/10 active:scale-95 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2"/>
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+          </svg>
+          <span>نسخ رابط الموقع</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Interactive RSVP Confirmation & 3D Celebration Trigger -->
+    <section class="reveal-up my-10" aria-label="تأكيد الحضور">
+      <div class="max-w-sm mx-auto">
+        <button id="rsvp-btn" type="button"
+          class="w-full min-h-[54px] px-8 py-3 rounded-full font-kufi font-bold text-base sm:text-lg bg-[#131929] text-[#fff3c4] border-2 border-[#dfb867] shadow-[0_10px_30px_rgba(223,184,103,0.2)] hover:bg-[#dfb867] hover:text-[#0b0e17] active:scale-95 transition-all duration-300">
+          تأكيد الحضور ومشاركة الفرحة ✨
+        </button>
+        <div id="rsvp-undo-wrap" class="hidden mt-2.5">
+          <button id="rsvp-undo-btn" type="button" class="text-xs font-kufi text-[#c5baa3]/70 underline hover:text-[#dfb867]">
+            تراجع عن التأكيد
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing Blessing -->
+    <footer class="reveal-up mt-10 pt-6 border-t border-[#dfb867]/20">
+      <p class="font-ruqaa text-2xl sm:text-3xl gold-foil leading-relaxed">
+        بحضوركم تكتمل الفرحة والسرور
+      </p>
+      <p class="mt-2 text-lg sm:text-xl text-[#c5baa3]">
+        بارك الله لهما وبارك عليهما وجمع بينهما في خير
+      </p>
+    </footer>
+  </main>
+
+  <!-- Custom Non-Blocking Toast Notification -->
+  <div id="toast-banner" role="status" aria-live="polite"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-full royal-card border border-[#dfb867]/70 text-[#fff3c4] font-kufi text-sm shadow-2xl opacity-0 translate-y-4 pointer-events-none transition-all duration-300 whitespace-nowrap">
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* =====================================================================
+         1. CONFIGURATION & EXACT WEDDING CONSTANTS
+         ===================================================================== */
+      const WEDDING_ISO = '2026-12-16T20:00:00+03:00';
+      const VENUE_MAP_URL = 'https://www.google.com/maps/search/?api=1&query=%D9%82%D8%B5%D8%B1%20%D8%AF%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AE%D9%8A%D8%A7%D9%84%D8%A9%20%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6';
+      const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* =====================================================================
+         2. CUSTOM TOAST NOTIFICATION SYSTEM (NO ALERT/CONFIRM)
+         ===================================================================== */
+      let toastTimer = null;
+      function showToast(message) {
+        const toast = document.getElementById('toast-banner');
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+          toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 3200);
+      }
+
+      /* =====================================================================
+         3. OPTIONAL AMBIENT SYNTHESIZED ROYAL HARP CHIME (TONE.JS)
+         ===================================================================== */
+      let soundEnabled = false;
+      let synth = null;
+
+      function initAudio() {
+        if (synth || typeof Tone === 'undefined') return;
+        try {
+          const reverb = new Tone.Reverb({ decay: 3.5, wet: 0.45 }).toDestination();
+          synth = new Tone.PolySynth(Tone.Synth, {
+            oscillator: { type: 'sine' },
+            envelope: { attack: 0.08, decay: 0.8, sustain: 0.2, release: 2.2 }
+          }).connect(reverb);
+          synth.volume.value = -12;
+        } catch (e) {
+          /* Ignore audio errors on restricted devices */
+        }
+      }
+
+      function playRoyalChord(notes) {
+        if (!soundEnabled || typeof Tone === 'undefined') return;
+        try {
+          if (Tone.context.state !== 'running') Tone.start();
+          initAudio();
+          if (!synth) return;
+          const now = Tone.now();
+          notes.forEach((note, idx) => {
+            synth.triggerAttackRelease(note, '2n', now + idx * 0.11);
+          });
+        } catch (e) {}
+      }
+
+      const audioBtn = document.getElementById('audio-toggle');
+      const iconOff = document.getElementById('icon-sound-off');
+      const iconOn = document.getElementById('icon-sound-on');
+
+      if (audioBtn) {
+        audioBtn.addEventListener('click', () => {
+          soundEnabled = !soundEnabled;
+          iconOff.classList.toggle('hidden', soundEnabled);
+          iconOn.classList.toggle('hidden', !soundEnabled);
+          if (soundEnabled) {
+            playRoyalChord(['D4', 'A4', 'D5', 'F#5']);
+            showToast('تم تفعيل المؤثرات الصوتية');
+          } else {
+            showToast('تم كتم الصوت');
+          }
+        });
+      }
+
+      /* =====================================================================
+         4. THREE.JS 3D ROYAL NAJDI ASTROLABE & CELESTIAL SANCTUARY
+         ===================================================================== */
+      let triggerCelebrationBurst = function () {};
+
+      function initThreeScene() {
+        const canvas = document.getElementById('webgl-canvas');
+        if (!canvas || typeof THREE === 'undefined') return;
+
+        const renderer = new THREE.WebGLRenderer({
+          canvas: canvas,
+          antialias: true,
+          alpha: true,
+          powerPreference: 'high-performance'
+        });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.outputEncoding = THREE.sRGBEncoding;
+
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x06080e, 0.032);
+
+        const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 120);
+        camera.position.set(0, 0.4, 15.5);
+
+        /* Lighting: Warm 24K Gold Key Light + Deep Sapphire Rim Light + Interactive Cursor Light */
+        const ambientLight = new THREE.AmbientLight(0x28324a, 1.1);
+        scene.add(ambientLight);
+
+        const keyLight = new THREE.DirectionalLight(0xffe7a8, 2.2);
+        keyLight.position.set(6, 10, 8);
+        scene.add(keyLight);
+
+        const rimLight = new THREE.DirectionalLight(0x3b6ea5, 1.4);
+        rimLight.position.set(-8, -5, -6);
+        scene.add(rimLight);
+
+        const pointerLight = new THREE.PointLight(0xfff0c2, 2.4, 24);
+        pointerLight.position.set(0, 2, 7);
+        scene.add(pointerLight);
+
+        /* Metallic Gold Materials */
+        const goldMaterial = new THREE.MeshStandardMaterial({
+          color: 0xdfb867,
+          metalness: 0.86,
+          roughness: 0.22
+        });
+
+        const antiqueBronzeMaterial = new THREE.MeshStandardMaterial({
+          color: 0x8f6723,
+          metalness: 0.8,
+          roughness: 0.35
+        });
+
+        const pearlEmissiveMaterial = new THREE.MeshStandardMaterial({
+          color: 0xfff5d6,
+          emissive: 0xdfb867,
+          emissiveIntensity: 0.65,
+          metalness: 0.3,
+          roughness: 0.2
+        });
+
+        /* Central 3D Royal Najdi Octagram Astrolabe Group */
+        const astrolabe = new THREE.Group();
+        astrolabe.position.set(0, 1.1, -2.5);
+        scene.add(astrolabe);
+
+        /* Helper to build a 3D chamfered square frame (part of Islamic 8-pointed Rub el Hizb star) */
+        function createOctagramSquare(size, thickness, mat) {
+          const group = new THREE.Group();
+          const barGeo = new THREE.BoxGeometry(size, thickness, thickness);
+          const half = size / 2;
+
+          const top = new THREE.Mesh(barGeo, mat);
+          top.position.y = half;
+          const bot = new THREE.Mesh(barGeo, mat);
+          bot.position.y = -half;
+          const left = new THREE.Mesh(barGeo, mat);
+          left.rotation.z = Math.PI / 2;
+          left.position.x = -half;
+          const right = new THREE.Mesh(barGeo, mat);
+          right.rotation.z = Math.PI / 2;
+          right.position.x = half;
+
+          group.add(top, bot, left, right);
+
+          /* Corner pearl nodes */
+          const nodeGeo = new THREE.OctahedronGeometry(thickness * 1.35, 0);
+          [[-half, -half], [half, -half], [half, half], [-half, half]].forEach(([x, y]) => {
+            const node = new THREE.Mesh(nodeGeo, pearlEmissiveMaterial);
+            node.position.set(x, y, 0);
+            group.add(node);
+          });
+
+          return group;
+        }
+
+        /* Layer 1: Outer Celestial Torus Ring */
+        const outerRing = new THREE.Mesh(
+          new THREE.TorusGeometry(5.6, 0.045, 16, 120),
+          goldMaterial
+        );
+        astrolabe.add(outerRing);
+
+        const outerBeadRing = new THREE.Group();
+        const beadGeo = new THREE.SphereGeometry(0.065, 10, 10);
+        for (let i = 0; i < 24; i++) {
+          const angle = (i / 24) * Math.PI * 2;
+          const bead = new THREE.Mesh(beadGeo, i % 3 === 0 ? pearlEmissiveMaterial : goldMaterial);
+          bead.position.set(Math.cos(angle) * 5.95, Math.sin(angle) * 5.95, 0);
+          outerBeadRing.add(bead);
+        }
+        astrolabe.add(outerBeadRing);
+
+        /* Layer 2: Interlocking 8-Pointed Najdi Star */
+        const starGroup = new THREE.Group();
+        const sqA = createOctagramSquare(6.6, 0.065, goldMaterial);
+        const sqB = createOctagramSquare(6.6, 0.065, antiqueBronzeMaterial);
+        sqB.rotation.z = Math.PI / 4;
+        starGroup.add(sqA, sqB);
+        astrolabe.add(starGroup);
+
+        /* Layer 3: Inner Gyroscopic Ring */
+        const innerRing = new THREE.Mesh(
+          new THREE.TorusGeometry(3.5, 0.04, 14, 96),
+          goldMaterial
+        );
+        innerRing.rotation.x = 0.45;
+        astrolabe.add(innerRing);
+
+        /* Architectural Light Columns (Evoking Qasr Durrat Al-Khayalah Colonnade) */
+        const pillarsGroup = new THREE.Group();
+        const pillarGeo = new THREE.CylinderGeometry(0.03, 0.03, 28, 8);
+        const pillarMat = new THREE.MeshBasicMaterial({
+          color: 0xdfb867,
+          transparent: true,
+          opacity: 0.14
+        });
+
+        [-7.5, -4.8, 4.8, 7.5].forEach((xPos, idx) => {
+          const col = new THREE.Mesh(pillarGeo, pillarMat);
+          col.position.set(xPos, 0, -6 - (idx % 2) * 2.5);
+          pillarsGroup.add(col);
+        });
+        scene.add(pillarsGroup);
+
+        /* Rising Golden Desert Stardust Particles */
+        const particleCount = 240;
+        const posArray = new Float32Array(particleCount * 3);
+        const speedArray = new Float32Array(particleCount);
+        const phaseArray = new Float32Array(particleCount);
+
+        for (let i = 0; i < particleCount; i++) {
+          posArray[i * 3] = (Math.random() - 0.5) * 24;
+          posArray[i * 3 + 1] = (Math.random() - 0.5) * 26;
+          posArray[i * 3 + 2] = (Math.random() - 0.5) * 14 - 2;
+          speedArray[i] = 0.006 + Math.random() * 0.014;
+          phaseArray[i] = Math.random() * Math.PI * 2;
+        }
+
+        const particlesGeo = new THREE.BufferGeometry();
+        particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        /* Create soft radial glow sprite texture via canvas */
+        const spriteCanvas = document.createElement('canvas');
+        spriteCanvas.width = 64;
+        spriteCanvas.height = 64;
+        const sCtx = spriteCanvas.getContext('2d');
+        const grad = sCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
+        grad.addColorStop(0, 'rgba(255, 246, 210, 1)');
+        grad.addColorStop(0.35, 'rgba(223, 184, 103, 0.75)');
+        grad.addColorStop(1, 'rgba(223, 184, 103, 0)');
+        sCtx.fillStyle = grad;
+        sCtx.fillRect(0, 0, 64, 64);
+
+        const particleTexture = new THREE.CanvasTexture(spriteCanvas);
+        const particlesMat = new THREE.PointsMaterial({
+          size: 0.22,
+          map: particleTexture,
+          transparent: true,
+          opacity: 0.85,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false
+        });
+
+        const starDust = new THREE.Points(particlesGeo, particlesMat);
+        scene.add(starDust);
+
+        /* Celebration Confetti / Golden Star Burst Pool */
+        const burstGroup = new THREE.Group();
+        scene.add(burstGroup);
+        const burstParticles = [];
+
+        triggerCelebrationBurst = function () {
+          const starShapeGeo = new THREE.OctahedronGeometry(0.14, 0);
+          for (let i = 0; i < 48; i++) {
+            const mesh = new THREE.Mesh(
+              starShapeGeo,
+              i % 2 === 0 ? goldMaterial : pearlEmissiveMaterial
+            );
+            mesh.position.set(0, -1.5, 4);
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 0.08 + Math.random() * 0.16;
+            burstParticles.push({
+              mesh: mesh,
+              vx: Math.cos(angle) * speed * (0.6 + Math.random()),
+              vy: 0.14 + Math.random() * 0.22,
+              vz: (Math.random() - 0.5) * 0.18,
+              rot: (Math.random() - 0.5) * 0.2,
+              life: 1.0
+            });
+            burstGroup.add(mesh);
+          }
+        };
+
+        /* Interactive Pointer & Scroll State */
+        let targetMouseX = 0;
+        let targetMouseY = 0;
+        let currentMouseX = 0;
+        let currentMouseY = 0;
+        let scrollProgress = 0;
+        let gateZoom = 1.65; /* Starts zoomed in behind wax seal, glides out on open */
+
+        window.addEventListener('pointermove', (e) => {
+          targetMouseX = (e.clientX / window.innerWidth) * 2 - 1;
+          targetMouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        }, { passive: true });
+
+        window.addEventListener('scroll', () => {
+          const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+          scrollProgress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+        }, { passive: true });
+
+        window.addEventListener('resize', () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        }, { passive: true });
+
+        /* Hook gate opening to smooth 3D camera glide */
+        window.__open3DGate = function () {
+          gateZoom = 0;
+        };
+
+        /* Animation Loop */
+        const clock = new THREE.Clock();
+        function animate() {
+          requestAnimationFrame(animate);
+          const elapsed = clock.getElapsedTime();
+
+          /* Smooth pointer interpolation */
+          currentMouseX += (targetMouseX - currentMouseX) * 0.05;
+          currentMouseY += (targetMouseY - currentMouseY) * 0.05;
+
+          /* Move dynamic specular light with cursor */
+          pointerLight.position.x = currentMouseX * 9;
+          pointerLight.position.y = currentMouseY * 6 + 1;
+
+          /* Camera choreography based on gate state + scroll depth */
+          const desiredZ = 15.2 - scrollProgress * 3.4 - gateZoom * 4.5;
+          const desiredY = 0.5 - scrollProgress * 2.2;
+          camera.position.z += (desiredZ - camera.position.z) * 0.05;
+          camera.position.y += (desiredY - camera.position.y) * 0.05;
+          camera.position.x += (currentMouseX * 1.1 - camera.position.x) * 0.05;
+          camera.lookAt(0, desiredY - 0.3, -2.5);
+
+          if (!REDUCED_MOTION) {
+            /* Rotate 3D Astrolabe Layers */
+            starGroup.rotation.z = elapsed * 0.08 + scrollProgress * 1.8;
+            outerBeadRing.rotation.z = -elapsed * 0.05;
+            innerRing.rotation.y = elapsed * 0.22;
+            innerRing.rotation.x = 0.45 + Math.sin(elapsed * 0.4) * 0.18;
+
+            /* Subtle 3D tilt following cursor/scroll */
+            astrolabe.rotation.y = currentMouseX * 0.28;
+            astrolabe.rotation.x = -currentMouseY * 0.2 + scrollProgress * 0.35;
+
+            /* Drift golden stardust upward */
+            const positions = particlesGeo.attributes.position.array;
+            for (let i = 0; i < particleCount; i++) {
+              positions[i * 3 + 1] += speedArray[i];
+              positions[i * 3] += Math.sin(elapsed * 0.7 + phaseArray[i]) * 0.003;
+              if (positions[i * 3 + 1] > 13) {
+                positions[i * 3 + 1] = -13;
+              }
+            }
+            particlesGeo.attributes.position.needsUpdate = true;
+          }
+
+          /* Update celebration burst particles */
+          for (let i = burstParticles.length - 1; i >= 0; i--) {
+            const p = burstParticles[i];
+            p.mesh.position.x += p.vx;
+            p.mesh.position.y += p.vy;
+            p.mesh.position.z += p.vz;
+            p.vy -= 0.0065; /* Gravity */
+            p.mesh.rotation.x += p.rot;
+            p.mesh.rotation.y += p.rot;
+            p.life -= 0.015;
+            p.mesh.scale.setScalar(Math.max(0.001, p.life));
+            if (p.life <= 0) {
+              burstGroup.remove(p.mesh);
+              burstParticles.splice(i, 1);
+            }
+          }
+
+          renderer.render(scene, camera);
+        }
+
+        animate();
+      }
+
+      /* =====================================================================
+         5. WAX SEAL GATE & 3D CARD TILT INTERACTIONS
+         ===================================================================== */
+      function initInteractions() {
+        const introGate = document.getElementById('intro-gate');
+        const sealTrigger = document.getElementById('seal-trigger');
+        const waxSeal = document.getElementById('wax-seal');
+        const contentStage = document.getElementById('content-stage');
+
+        let isOpened = false;
+        function openInvitation() {
+          if (isOpened) return;
+          isOpened = true;
+
+          if (window.__open3DGate) window.__open3DGate();
+          triggerCelebrationBurst();
+          playRoyalChord(['D4', 'F#4', 'A4', 'D5', 'E5']);
+
+          introGate.classList.add('opened');
+          contentStage.classList.add('visible');
+
+          /* Trigger initial viewport reveals */
+          setTimeout(checkReveals, 350);
+        }
+
+        if (sealTrigger) {
+          sealTrigger.addEventListener('click', openInvitation);
+          sealTrigger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              openInvitation();
+            }
+          });
+
+          /* Interactive 3D tilt on Wax Seal */
+          sealTrigger.addEventListener('pointermove', (e) => {
+            if (REDUCED_MOTION) return;
+            const rect = waxSeal.getBoundingClientRect();
+            const dx = (e.clientX - rect.left) / rect.width - 0.5;
+            const dy = (e.clientY - rect.top) / rect.height - 0.5;
+            waxSeal.style.animation = 'none';
+            waxSeal.style.transform = `rotateY(${dx * 28}deg) rotateX(${-dy * 28}deg) scale(1.04)`;
+          });
+
+          sealTrigger.addEventListener('pointerleave', () => {
+            waxSeal.style.transform = '';
+            waxSeal.style.animation = '';
+          });
+        }
+
+        /* 3D Interactive Tilt + Specular Sheen on Groom Portrait Card */
+        const groomCard = document.getElementById('groom-card');
+        const groomSheen = document.getElementById('groom-sheen');
+
+        if (groomCard && !REDUCED_MOTION) {
+          window.addEventListener('pointermove', (e) => {
+            const rect = groomCard.getBoundingClientRect();
+            if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+            const dx = Math.max(-0.6, Math.min(0.6, (e.clientX - rect.left) / rect.width - 0.5));
+            const dy = Math.max(-0.6, Math.min(0.6, (e.clientY - rect.top) / rect.height - 0.5));
+            groomCard.style.transform = `rotateY(${dx * 16}deg) rotateX(${-dy * 12}deg)`;
+            if (groomSheen) {
+              groomSheen.style.setProperty('--mx', `${(dx + 0.5) * 100}%`);
+              groomSheen.style.setProperty('--my', `${(dy + 0.5) * 100}%`);
+            }
+          }, { passive: true });
+        }
+      }
+
+      /* =====================================================================
+         6. LIVE MECHANICAL COUNTDOWN CHRONOMETER (RIYADH TIME UTC+3)
+         ===================================================================== */
+      function initCountdown() {
+        const targetTimestamp = Date.parse(WEDDING_ISO);
+        const gridEl = document.getElementById('countdown-grid');
+        const noteEl = document.getElementById('countdown-note');
+        const boxes = {
+          d: document.getElementById('cd-days'),
+          h: document.getElementById('cd-hours'),
+          m: document.getElementById('cd-mins'),
+          s: document.getElementById('cd-secs')
+        };
+
+        function renderDigits(container, valueStr) {
+          if (!container) return;
+          while (container.children.length < valueStr.length) {
+            const col = document.createElement('div');
+            col.className = 'digit-col';
+            const strip = document.createElement('div');
+            strip.className = 'digit-strip';
+            for (let i = 0; i <= 9; i++) {
+              const sp = document.createElement('span');
+              sp.textContent = i;
+              strip.appendChild(sp);
+            }
+            col.appendChild(strip);
+            container.insertBefore(col, container.firstChild);
+          }
+          const cols = container.children;
+          const offset = cols.length - valueStr.length;
+          for (let j = 0; j < cols.length; j++) {
+            const digit = j < offset ? 0 : parseInt(valueStr[j - offset], 10) || 0;
+            cols[j].firstChild.style.transform = `translateY(-${digit * 10}%)`;
+          }
+        }
+
+        const pad2 = (n) => (n < 10 ? '0' + n : '' + n);
+
+        function updateTimer() {
+          const diffMs = targetTimestamp - Date.now();
+          const totalSec = Math.floor(diffMs / 1000);
+
+          if (totalSec <= 0) {
+            if (gridEl) gridEl.style.display = 'none';
+            if (noteEl) {
+              noteEl.textContent = '✨ حان موعد الفرحة الليلة، نتشرف بحضوركم الكريم ✨';
+              noteEl.classList.add('text-[#dfb867]', 'font-bold', 'text-lg');
+            }
+            return;
+          }
+
+          const days = Math.floor(totalSec / 86400);
+          const hours = Math.floor((totalSec % 86400) / 3600);
+          const mins = Math.floor((totalSec % 3600) / 60);
+          const secs = totalSec % 60;
+
+          renderDigits(boxes.d, pad2(days));
+          renderDigits(boxes.h, pad2(hours));
+          renderDigits(boxes.m, pad2(mins));
+          renderDigits(boxes.s, pad2(secs));
+
+          setTimeout(updateTimer, (diffMs % 1000) || 1000);
+        }
+
+        updateTimer();
+      }
+
+      /* =====================================================================
+         7. HIGH-PRECISION SCANNABLE QR CODE GENERATOR
+         ===================================================================== */
+      function initQRCode() {
+        const container = document.getElementById('qr-container');
+        if (!container || typeof qrcode === 'undefined') return;
+
+        try {
+          const qr = qrcode(0, 'M');
+          qr.addData(VENUE_MAP_URL);
+          qr.make();
+
+          const count = qr.getModuleCount();
+          const size = 200;
+          const cellSize = size / count;
+          let paths = '';
+
+          for (let r = 0; r < count; r++) {
+            for (let c = 0; c < count; c++) {
+              if (qr.isDark(r, c)) {
+                const x = (c * cellSize).toFixed(2);
+                const y = (r * cellSize).toFixed(2);
+                const w = (cellSize + 0.15).toFixed(2);
+                paths += `<rect x="${x}" y="${y}" width="${w}" height="${w}" rx="${(cellSize * 0.22).toFixed(2)}" fill="#0b0e17"/>`;
+              }
+            }
+          }
+
+          container.innerHTML = `
+            <svg viewBox="0 0 ${size} ${size}" class="w-full h-full block" role="img" aria-label="باركود موقع قصر درة الخيالة">
+              <rect width="${size}" height="${size}" fill="#fffdf7"/>
+              ${paths}
+            </svg>
+          `;
+        } catch (err) {
+          /* Keeps fallback qr.svg image if anything fails */
+        }
+      }
+
+      /* =====================================================================
+         8. CALENDAR (.ICS) DOWNLOAD, COPY LINK & RSVP HANDLERS
+         ===================================================================== */
+      function initActions() {
+        /* Download .ICS Calendar Event */
+        const calBtn = document.getElementById('add-calendar-btn');
+        if (calBtn) {
+          calBtn.addEventListener('click', () => {
+            const icsContent = [
+              'BEGIN:VCALENDAR',
+              'VERSION:2.0',
+              'PRODID:-//Al-Humaidi Wedding//AR',
+              'BEGIN:VEVENT',
+              'UID:hamza-wedding-20261216@alhumaidi',
+              'DTSTAMP:20261122T120000Z',
+              'DTSTART:20261216T170000Z',
+              'DTEND:20261216T210000Z',
+              'SUMMARY:حفل زواج المهندس حمزة الحميدي',
+              'DESCRIPTION:يتشرف السيد عبدالرحمن مقبل شايف الحميدي بدعوتكم لحضور حفل زواج نجله المهندس حمزة.',
+              'LOCATION:قصر درة الخيالة، الرياض، المملكة العربية السعودية',
+              'END:VEVENT',
+              'END:VCALENDAR'
+            ].join('\r\n');
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'حفل-زواج-المهندس-حمزة.ics';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showToast('تم تحميل ملف الموعد لإضافته إلى التقويم');
+          });
+        }
+
+        /* Copy Location Link using document.execCommand('copy') fallback-safe method */
+        const copyBtn = document.getElementById('copy-link-btn');
+        if (copyBtn) {
+          copyBtn.addEventListener('click', () => {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = VENUE_MAP_URL;
+            tempInput.setAttribute('readonly', '');
+            tempInput.style.position = 'fixed';
+            tempInput.style.opacity = '0';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+              document.execCommand('copy');
+              showToast('تم نسخ رابط موقع قصر درة الخيالة بنجاح');
+            } catch (e) {
+              showToast('اضغط على الباركود لفتح الخريطة مباشرة');
+            }
+            document.body.removeChild(tempInput);
+          });
+        }
+
+        /* RSVP Confirmation with LocalStorage + 3D Celebration Burst */
+        const rsvpBtn = document.getElementById('rsvp-btn');
+        const rsvpUndoWrap = document.getElementById('rsvp-undo-wrap');
+        const rsvpUndoBtn = document.getElementById('rsvp-undo-btn');
+        const STORAGE_KEY = 'hamza_rsvp_done';
+
+        function applyConfirmedState() {
+          if (!rsvpBtn) return;
+          rsvpBtn.textContent = 'تم تأكيد حضوركم الكريم ✓';
+          rsvpBtn.classList.remove('bg-[#131929]', 'text-[#fff3c4]');
+          rsvpBtn.classList.add('bg-gradient-to-l', 'from-[#9e752b]', 'via-[#dfb867]', 'to-[#f3d894]', 'text-[#0b0e17]');
+          if (rsvpUndoWrap) rsvpUndoWrap.classList.remove('hidden');
+        }
+
+        function applyDefaultState() {
+          if (!rsvpBtn) return;
+          rsvpBtn.textContent = 'تأكيد الحضور ومشاركة الفرحة ✨';
+          rsvpBtn.classList.add('bg-[#131929]', 'text-[#fff3c4]');
+          rsvpBtn.classList.remove('bg-gradient-to-l', 'from-[#9e752b]', 'via-[#dfb867]', 'to-[#f3d894]', 'text-[#0b0e17]');
+          if (rsvpUndoWrap) rsvpUndoWrap.classList.add('hidden');
+        }
+
+        if (localStorage.getItem(STORAGE_KEY) === '1') {
+          applyConfirmedState();
+        }
+
+        if (rsvpBtn) {
+          rsvpBtn.addEventListener('click', () => {
+            if (localStorage.getItem(STORAGE_KEY) === '1') {
+              triggerCelebrationBurst();
+              showToast('تشرفنا بتأكيد حضوركم مسبقاً ✨');
+              return;
+            }
+            localStorage.setItem(STORAGE_KEY, '1');
+            applyConfirmedState();
+            triggerCelebrationBurst();
+            playRoyalChord(['D4', 'A4', 'F#5', 'A5']);
+            showToast('نسعد ونتشرف بحضوركم في ليلة العمر');
+
+            if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+              window.goatcounter.count({ path: 'rsvp-click', title: 'تأكيد الحضور', event: true });
+            }
+          });
+        }
+
+        if (rsvpUndoBtn) {
+          rsvpUndoBtn.addEventListener('click', () => {
+            localStorage.removeItem(STORAGE_KEY);
+            applyDefaultState();
+            showToast('تم التراجع عن تأكيد الحضور');
+
+            if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+              window.goatcounter.count({ path: 'rsvp-cancel', title: 'تراجع عن الحضور', event: true });
+            }
+          });
+        }
+      }
+
+      /* =====================================================================
+         9. SCROLL REVEAL OBSERVER
+         ===================================================================== */
+      function checkReveals() {
+        const items = document.querySelectorAll('.reveal-up');
+        items.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.92) {
+            el.classList.add('is-visible');
+          }
+        });
+      }
+
+      function initScrollObserver() {
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.12 });
+
+          document.querySelectorAll('.reveal-up').forEach((el) => observer.observe(el));
+        } else {
+          checkReveals();
+        }
+        window.addEventListener('scroll', checkReveals, { passive: true });
+      }
+
+      /* =====================================================================
+         10. INITIALIZE EVERYTHING ON WINDOW LOAD
+         ===================================================================== */
+      window.addEventListener('load', () => {
+        initThreeScene();
+        initInteractions();
+        initCountdown();
+        initQRCode();
+        initActions();
+        initScrollObserver();
+      });
+    })();
+  </script>
+  <script data-goatcounter="https://omarald.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
